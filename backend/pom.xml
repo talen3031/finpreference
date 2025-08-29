@@ -73,7 +73,6 @@
       </configuration>
     </plugin>
 
-    <!-- 已有的 Spring Boot 插件，保留 -->
     <plugin>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-maven-plugin</artifactId>

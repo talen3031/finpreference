@@ -6,13 +6,15 @@ WORKDIR /app
 COPY pom.xml .
 RUN mvn -q -DskipTests dependency:go-offline
 COPY src ./src
-RUN mvn -q -DskipTests package
+# 產生可執行的 Spring Boot Fat Jar
+RUN mvn -q -DskipTests package spring-boot:repackage
+# 只挑不是 .original 的 jar，固定成 /app/app.jar
+RUN set -eux; JAR="$(ls target/*.jar | grep -v '\.original$' | head -n1)"; \
+    cp "$JAR" /app/app.jar
 
 ### Run stage
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-ENV SPRING_PROFILES_ACTIVE=dev
-# 取出 target 內唯一的 jar 作為 app.jar
-COPY --from=build /app/target/*.jar /app/app.jar
+COPY --from=build /app/app.jar /app/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","/app/app.jar"]
