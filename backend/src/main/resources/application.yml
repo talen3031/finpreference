@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://hopper.proxy.rlwy.net:55537/railway?sslmode=require}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:kjdUKANeMBNZCBBZAqFFKancnpYXVRdR}
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+app:
+  jwt:
+    secret: my-super-secret-key-that-is-very-long
+    accessMinutes: 15
+    refreshDays: 7
+  cors:
+    allowedOrigin: "http://localhost:5173"
+  cookie:
+    name: "refreshToken"
+    secure: false
+    sameSite: Lax
+# ✅ 開啟 Spring Security 偵錯日誌
+logging:
+  level:
+    org.springframework.security: DEBUG

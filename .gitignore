@@ -1,0 +1,50 @@
+
+# ===== Java / Maven / Spring Boot =====
+target/
+*.class
+*.log
+logs/
+hs_err_pid*
+replay_pid*
+# Spring config (僅忽略本機私有檔；保留 application.yml 進版控)
+application-local.yml
+application-*.local.yml
+
+# ===== Node / Vite / TypeScript =====
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== Env / Secrets =====
+.env
+.env.*
+
+
+# Docker 內部暫存
+**/.dockerignore
+
+# ===== Caches / Temp =====
+.tmp/
+temp/
+tmp/
+.cache/
+.parcel-cache/
+*.swp
+*.swo
+
+# ===== Test reports =====
+**/surefire-reports/
+**/failsafe-reports/
+reports/
+lcov.info
+
+# ===== DB dumps (保留 .sql 以便版控 schema/migration) =====
+*.dump
+*.bak
+*.backup
+*.pg_dump
