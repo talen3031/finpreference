@@ -10,11 +10,6 @@ replay_pid*
 application-local.yml
 application-*.local.yml
 
-docker-compose.prod.yml
-docker-compose.yml
-backend/Dockerfile
-frontend/Dockerfile
-
 # ===== Node / Vite / TypeScript =====
 node_modules/
 dist/
