@@ -1,12 +1,41 @@
 # Fin Preference (fin-preference)
 
-一個簡潔可維護的 **金融商品喜好系統**  
-- **後端**：Java 21 + Spring Boot 3（REST API、JWT 驗證、CORS、Swagger/OpenAPI、HikariCP）  
+本專案為一個 **金融商品喜好清單系統**，採用 **前後端分離**
+後端使用 Spring Boot 提供 RESTful API，並透過 **PostgreSQL Stored Procedure (SP)** 處理資料存取及商業邏輯。  
+
+- **後端**：Java 21 + Spring Boot 3
 - **前端**：Vite + Vue
-- **資料庫**：PostgreSQL（Railway 公網代理）  
-
+- **資料庫**：PostgreSQL
+- **demo**：為了方便demo 我已部署至Railway   
+    - 🔗前端入口頁：https://finpref-frontend-production.up.railway.app
+    - 後端 Swagger 文件：https://finpref-backend-production.up.railway.app/swagger-ui/index.html#/
 ---
-
+## 專案分層架構（Frontend → Reverse Proxy → Controller → Service → DAO → Database）
+```text
++--------------------------------------------------------------+
+| Frontend (Vue) |
+| - Vue Router / Axios / LocalStorage (JWT access token) |
+| - SPA 靜態檔案：index.html, assets/* |
++-------------------------------|------------------------------+
+|
+v (HTTPS)
++--------------------------------------------------------------+
+| Backend (Spring Boot + Spring Security) |
+| Controller 層 ← REST API / 驗證請求 / 回傳 ApiResponse |
+| | |
+| v |
+| Service 層 ← 業務邏輯 / Transaction / 組合 DAO 呼叫 |
+| | |
+| v |
+| DAO 層 ←呼叫 PostgreSQL Stored Procedures |
++-------------------------------|------------------------------+
+|
+v
++--------------------------------------------------------------+
+| PostgreSQL (Tables + Stored Procedures / Functions) |
++--------------------------------------------------------------+
+```
+---
 ## 功能概要
 - **產品管理（公開）**
   - `GET /products`：取得商品清單（已放行）
@@ -69,6 +98,5 @@
 - **唯一鍵限制**：(`user_id`, `product_no`, `account`) 不可重複
 - **索引**：`user_id`、`product_no` 各自建立索引以提升查詢效能
 
-
-
 ---
+

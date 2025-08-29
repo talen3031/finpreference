@@ -1,4 +1,4 @@
--- demo 使用者（密碼 test123 的 bcrypt 示例：請以實際註冊 API 產生者為準）
+-- 使用者（密碼 test123 的 bcrypt 示例：請以實際註冊 API 產生者為準）
 CALL sp_create_user(
   'd524efd9-13a6-4272-beb1-727e02540bbc','test','test@email.com',
   '$2a$10$sK5pUs8ipsDrV6WhzvdSbOxj11e7YgP9UUfCLSjBqg/c6hTXkLaC2',

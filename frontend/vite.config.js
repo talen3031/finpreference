@@ -18,7 +18,6 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: PROXY_TARGET,    // 本機：http://localhost:8080；Docker：http://backend:8080
           changeOrigin: true,
-          ws: true,                // 若後端有 WebSocket/SSE，順便打開
           rewrite: p => p.replace(/^\/api/, ''),
         },
       },

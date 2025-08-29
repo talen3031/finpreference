@@ -28,14 +28,13 @@ public class UserDao {
       return Optional.empty();
     });
   }
-  // 範例：請依實際 schema 調整 table/column
-  public String getDefaultAccount(String userId){
-    return jdbc.queryForObject(
-        "SELECT default_account FROM app_user WHERE id = :u",
-        Map.of("u", userId),
-        String.class
-    );
-  }
+  // public String getDefaultAccount(String userId){
+  //   return jdbc.queryForObject(
+  //       "SELECT default_account FROM app_user WHERE id = :u",
+  //       Map.of("u", userId),
+  //       String.class
+  //   );
+  // }
   public void create(String userId, String userName, String email, String passwordHash, String account){
   String sql = "CALL sp_create_user(:id,:name,:email,:pwd,:acct)";
   jdbc.update(sql, new MapSqlParameterSource()

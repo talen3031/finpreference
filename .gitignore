@@ -9,6 +9,9 @@ replay_pid*
 # Spring config (僅忽略本機私有檔；保留 application.yml 進版控)
 application-local.yml
 application-*.local.yml
+# docker  
+docker-compose.prod.yml
+docker-compose.yml
 
 # ===== Node / Vite / TypeScript =====
 node_modules/

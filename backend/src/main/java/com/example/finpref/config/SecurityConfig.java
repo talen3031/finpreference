@@ -43,7 +43,7 @@ public class SecurityConfig {
         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
         // Auth
         .requestMatchers("/auth/**").permitAll()
-        // ✅ 放行商品列表（同時放行 /products 與 /products/**）
+        // 放行商品列表（同時放行 /products 與 /products/**）
         .requestMatchers(HttpMethod.GET, "/products", "/products/**").permitAll()
         // 把 /error 放行，避免未來任何未捕捉例外又變成 403 誤導
         .requestMatchers("/error","/errors").permitAll()
@@ -61,8 +61,8 @@ public class SecurityConfig {
     // 允許全部來源（AllowedOriginPatterns 可與 allowCredentials(true) 同用）
     cfg.setAllowedOriginPatterns(List.of("*"));
     // 白名單而非萬用，改成：
-    // cfg.setAllowedOrigins(List.of(allowedOrigin, "http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:8080"));
-
+    // List<String> origins = List.of(allowedOrigin.split(","));
+    // cfg.setAllowedOrigins(origins);
     cfg.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
     cfg.setAllowedHeaders(List.of("*"));
     cfg.setExposedHeaders(List.of("Authorization"));

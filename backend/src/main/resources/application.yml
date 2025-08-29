@@ -16,7 +16,7 @@ app:
     accessMinutes: 15
     refreshDays: 7
   cors:
-    allowedOrigin: "http://localhost:5173"
+    allowedOrigin: "http://localhost:5173,https://finpref-frontend-production.up.railway.app"
   cookie:
     name: "refreshToken"
     secure: false
