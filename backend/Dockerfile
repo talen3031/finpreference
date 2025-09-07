@@ -17,4 +17,8 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/app.jar /app/app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+
+# 👉 限制 JVM 記憶體：最小 64MB，最大 256MB
+ENV JAVA_OPTS="-XX:+UseContainerSupport -Xms64m -Xmx256m"
+
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]
